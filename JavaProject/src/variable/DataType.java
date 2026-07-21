@@ -56,10 +56,11 @@ public class DataType {
 		System.out.println("============================");
 		//문자열 : 참조타입 String -> 큰따옴표 이용 문자열 리터럴을 생성하고 String 타입 변수에 저장
 		//기본 변수 : 값 저장 , 참조형 변수(문자열 등) : 값이 있는 메모리의 주소 저장
-		String name = "홍길동"; //문자열 홍길동은 메모리 특정공간에 저장되고 name 변수에는 홍길동이 저장된 시작
+		String name = "홍길동"; //문자열 홍길동은 메모리 특정공간에 저장되고 name 변수에는 홍길동이 저장된 시작주소가 저장됨
 		String addr = "서울시 강남구 역삼동";
 		
-		
+		//논리형(boolean) 타입
+		boolean booleanValue = true;
 	}
 
 }
