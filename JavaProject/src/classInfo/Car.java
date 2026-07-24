@@ -9,8 +9,16 @@ public class Car {
 	int carYear;
 	int carCc;
 	
+	int x = 0;
+	int y = 0;
+	
+	//일반 연산코드는 class에 표현 불가능
+	// y+=x;
+	
 	// 메소드 : 객체를 통해 어디서든 접근 가능(public), 반환값 없음 : void
+	// 클래스에서필요한 연산은 메소드 내부에서 진행
 	public void showCarInfo() {
 		System.out.println("차량번호 : " + carNo);
+		y+=x;
 	}
 }
