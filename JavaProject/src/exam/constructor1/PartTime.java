@@ -1,4 +1,4 @@
-package exam.constructor_ex1;
+package exam.constructor1;
 
 public class PartTime extends Worker {
 	int hours;
@@ -16,6 +16,9 @@ public class PartTime extends Worker {
     
     @Override
     public String toString() {
-        return super.toString() + "\n시급 : " + unitPrice + "원\n근무시간: " + hours + " 시간\n총지불액 : " + calculatePay() + " 원";
+        return super.toString() + 
+        		"\n시급 : " + unitPrice + "원" + 
+        		"\n근무시간: " + hours + " 시간" +
+        		"\n총지불액 : " + calculatePay() + " 원";
     }
 }

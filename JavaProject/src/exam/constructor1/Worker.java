@@ -1,4 +1,4 @@
-package exam.constructor_ex1;
+package exam.constructor1;
 
 public class Worker {
 	String joominNo;
