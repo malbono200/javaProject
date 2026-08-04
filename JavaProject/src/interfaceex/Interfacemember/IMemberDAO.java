@@ -8,7 +8,7 @@ public interface IMemberDAO {
 	public void insertMember(MemberDTO dto);
 	
 	//1명 회원정보 삭제 : 1명의 회원 id를 받아서 DB에서 해당 id의 정보를 삭제하고 종료(매개변수 반환값 없음)
-	public void insertMember(String memId);
+	public void deleteMember(String memId);
 	
 	//전체 회원 정보 조회 : DB 회원테이블의 모든 정보를 반환(매개변수 없음 반환값 있음)
 	//반환하는 회원 수 : n 명 (n >= 0)

@@ -9,7 +9,7 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	@Override
-	public void insertMember(String memId) {
+	public void deleteMember(String memId) {
 		// TODO Auto-generated method stub
 		
 	}
