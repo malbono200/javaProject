@@ -1,18 +1,19 @@
-package datastructure.stack;
+package datastructure.stack.generic;
 
-//배열을 활용한 Stack 구현
-//Char형 data를 저장하는 Stack
-public class Stack {
+import java.util.EmptyStackException;
+
+//generic 타입의 클래스로 구성하고 객체 생성 시 타입 결정
+public class StackGeneric <E>{
 	private int stackSize; //스택 크기
 	private int top; //스택 포인터
-	private char[] stackArr; //스택 -> char 형만 처리 가능
-
+	private Object[] stackArr; //스택 -> char 형만 처리 가능
+	
 	//생성자 : 스택 초기화
 	//배열 index는 0부터 시작하므로 top은 -1로 초기값 설정
-	public Stack(int stackSize) {
+	public StackGeneric(int stackSize) {
 		this.stackSize = stackSize;
 		this.top = -1;
-		this.stackArr = new char[stackSize];
+		this.stackArr = new Object[stackSize];
 	}
 	
 	// stack 기능 구현
@@ -27,48 +28,42 @@ public class Stack {
 		return top == stackSize-1; //전체 배열 원소수 -1이 마지막 index 값
 	}
 	
-	//push -> 데이터 삽입
+	//push -> 데이터 삽입 generic
 	//삽입시 overflow 체크
-	public void push(char item) {
+	public void push(E item) {
 		if(isFull()) {
 			System.out.println("Stack Full. Overflow");
 		} else {
-			//top을 증가한 후 데이터 저장
+			//Object type 배열에 저장 -> generic 타입이므로 나중에 item의 타입은 결정됨
+			//Object는 최상위 클래스이므로 어떤 타입도 저장 가능
 			stackArr[++top] = item;
 		}
 	}
 	
-	//pop -> 데이터 삭제(top위치 데이터 반환)
-	//삭제할 데이터가 있는지 확인 : underflow
-	public char pop() {
+	public E pop() {
 		if(isEmpty()) {
 			System.out.println("StackEmpty");
-			return 'E';
+			//제네릭 타입을 반환 해야 하는 경우에 예외상황이면 예외를 던지는 방법을 많이 사용함
+			throw new EmptyStackException();
 		} else {
-			return stackArr[top--];
+			//Object 타입을 E 타입으로 형변환 (E)
+			@SuppressWarnings("unchecked")
+			E item = (E) stackArr[top--];
+			return item;
 		}
 	}
 	
-	//저장된 데이터 중 가장 최근에 저장된 데이터를 반환
-	//top위치의 데이터 반환만
-	//스택이 비어있는지 확인
-	public char peek() {
+	public E peek() {
 		if(isEmpty()) {
 			System.out.println("Stack Empty");
-			return 'E';
+			throw new EmptyStackException();
 		} else {
-			return stackArr[top];
+			@SuppressWarnings("unchecked")
+			E item = (E)stackArr[top];
+			return item;
 		}
 	}
 	
-	//스택을 비움
-	public void clear() {
-		//top을 -1로 초기화
-		top = -1;
-	}
-	
-	//스택 내 저장된 모든 데이터 출력
-	//dump
 	public void showStack() {
 		if(isEmpty()) {
 			System.out.println("Stack Empty");
@@ -81,7 +76,6 @@ public class Stack {
 		}
 	}
 	
-	//연습문제
 	public int size() {
         return top + 1;
     }
