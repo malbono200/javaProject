@@ -1,4 +1,4 @@
-package datastructure.linkedlist;
+package exam.algo.parking;
 
 public class ListNode {
 	private String data; // |데이터|링크|

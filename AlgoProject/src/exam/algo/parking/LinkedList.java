@@ -1,4 +1,4 @@
-package datastructure.linkedlist;
+package exam.algo.parking;
 
 public class LinkedList {
 	private ListNode head; //linked list를 참조하는 참조변수, linked list의 첫번째 node를 참조함
@@ -138,5 +138,15 @@ public class LinkedList {
 			}
 			head = currentNode; //반복문을 벗어나면 currentNode는 마지막 node를 참조하게 됨		
 		}
+		
+		public int getSize() {
+	        int count = 0;
+	        ListNode tempNode = this.head;
+	        while (tempNode != null) {
+	            count++;
+	            tempNode = tempNode.link;
+	        }
+	        return count;
+	    }
 		
 } //class 종료
