@@ -19,7 +19,7 @@ public class MyQueue {
 	//front와 rear의 값이 동일하면 데이터가 없는 상태
 	public boolean isEmpty() {
 		if(front == rear) {
-			front = rear = -1;
+			front = rear = -1; //큐가 비었으므로 모든 공간 사용 가능한 상태로 초기화
 		}
 		return front == rear;
 	}
@@ -82,7 +82,7 @@ public class MyQueue {
 			System. out.println("Queue Empty");
 		} else {
 			System. out.print("Queue items : ");
-			for(int i=front+1;i <= rear;i++) {
+			for(int i=front+1; i <= rear; i++) {
 				System.out.print(i + ":" + queue[i] + " ");
 			}
 			System.out.println();
@@ -90,13 +90,14 @@ public class MyQueue {
 	}
 	
 	//전달된 data Queue에 저장된 데이터 인지 확인 후 해당 인덱스 반환
+	//현재 주차 확인 중인 차량에 대하여 출차시 선행차량 대수 확인용으로 변경
 	public int contains(char item) {
 		if (isEmpty()) {
 			return -1;
 		} else {
 			for (int i = front + 1; i <= rear; i++) {
 				if (queue[i] == item) {
-					return i;
+					return i - (front +1); //i : 현재 확인중인 원소의 idx - 첫번째 dequeue 대상 원소의 idx
 				}			
 			}
 		}
