@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>도서 정보 등록</title>
+</head>
+<body>
+	<h3>도서 정보 등록</h3>
+    <form action="bookInsert" method="post">
+        도서번호	<input type="text" name="bookNo"><br>
+        도서명	<input type="text" name="bookTitle"><br>
+        저자 		<input type="text" name="author"><br>
+        가격 		<input type="text" name="price"><br>
+        발행일 
+        <input type="text" name="pubYear" size="2"> 년 
+        <input type="text" name="pubMonth" size="2"> 월 
+        <input type="text" name="pubDay" size="2"> 일<br>
+        재고 		<input type="text" name="stock"><br>
+        출판사번호 <input type="text" name="pubNo"><br>
+		<input type="submit" value="등록"> <input type="reset" value="취소">
+    </form>
+</body>
+</html>
