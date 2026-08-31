@@ -25,7 +25,7 @@ public class ServletDataFirst extends HttpServlet {
 		String encodedName = URLEncoder.encode(name, "utf-8");
 		System.out.println(encodedName);
 		int age = 30;
-		response.sendRedirect("sec04?name"+encodedName+"&age="+age);  //url의 페이로드가 한글이 포함됨
+		response.sendRedirect("sec04?name="+encodedName+"&age="+age);  //url의 페이로드가 한글이 포함됨
 	}
 
 }

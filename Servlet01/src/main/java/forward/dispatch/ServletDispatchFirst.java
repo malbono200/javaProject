@@ -25,7 +25,7 @@ public class ServletDispatchFirst extends HttpServlet {
 		String name = "홍길동";
 		int age = 30;
 		//get 방식 요청에 payload를 추가해서 url 구성 - 내부 통신 이므로 인코딩 안해도 됨
-		RequestDispatcher dispatch = request.getRequestDispatcher("dispatch02?name="+name+"&age"+age);
+		RequestDispatcher dispatch = request.getRequestDispatcher("dispatch02?name="+name+"&age="+age);
 		dispatch.forward(request, response); //클라이언트 정보 전달(request, response)
 	}
 
