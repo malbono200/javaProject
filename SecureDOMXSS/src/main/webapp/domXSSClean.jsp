@@ -6,21 +6,27 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript">
-		//#http://www.naver.com/#example -> 슬라이스는 시작인덱스부터 끝까지 추출
-		//#first.jsp -> 시작 idx 부터 마지막까지 추출해서 반환 : slice(1)
-		//first.jsp가 반환
 			const hash = window.location.hash.slice(1);
-			//javascript: function a(){setTimeout(function(){alert('악성스크립트실행')}, 1000)}; a();
-			//const hash = javascript: function a(){setTimeout(function(){alert('악성스크립트실행')},1000)}; a();
 			
-			if(hash) {
-				window.location.href = decodeURIComponent(hash); //hash 내용을 uri로 구성
-				//현재 hash가 #first.jsp라면 /first.jsp로 변경 구성됨
+			if(cleanXSS(hash)) {
+				window.location.href = decodeURIComponent(hash); 
 			}
 			
 			window.addEventListener('hashchange', function(){
-				window.location.href = decodeURIComponent(window.location.hash.slice(1));
+				const hash2 = window.location.hash.slice(1);
+				if(cleanXSS(hash2)){
+					window.location.href = decodeURIComponent(hash2);					
+				}
 			});
+			
+			function cleanXSS(keyword) {
+				const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|.|]+$/;
+				if(!regex.test(keyword)) {
+					alert('특수 문자는 입력할 수 없습니다.');
+					return false;
+				}
+				return true;
+			}
 			
 		</script>
 	</head>
