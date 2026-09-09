@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+//로그인 시 salt값은 db에 저장되어 있는 상태임
+//회원정보와 동일 테이블에 저장되어 있으면 취약한 정보저장임 (단, 연습용이어서 동일 테이블에 저장했음)
+//로그인 시 에는 해시기능 메소드만 필요함(개발자는 회원가입시 진행한 스트레칭 수는 개발자는 알고 있음)
 public class MemberLoginKeySalt {
 	public static void main(String[] args) {
 		DBConn dbCon = new DBConn();
