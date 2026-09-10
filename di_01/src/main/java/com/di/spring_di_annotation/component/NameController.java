@@ -3,8 +3,10 @@ package com.di.spring_di_annotation.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+//@Component
+@Controller
 public class NameController {
 
 	@Autowired

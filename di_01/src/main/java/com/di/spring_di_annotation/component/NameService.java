@@ -1,8 +1,10 @@
 package com.di.spring_di_annotation.component;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+//@Component
+@Service
 public class NameService implements INameInterface{
 	
 	@Override
