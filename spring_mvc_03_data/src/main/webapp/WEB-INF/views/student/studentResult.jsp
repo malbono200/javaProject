@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Model and ModelAndView</title>
+<title>form param 확인</title>
 </head>
 <body>
-	제목 : ${title}<br>
-    가격 : ${price}
+	학번 : ${no } <br>
+	학년 : ${year } <br>
+	이름 : ${name } <br>
 </body>
 </html>

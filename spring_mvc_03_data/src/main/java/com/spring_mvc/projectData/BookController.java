@@ -16,12 +16,11 @@ public class BookController {
     }
 
     @RequestMapping("/bookInfoView2")
-    public ModelAndView showBookInfo2() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("title", "스프링 프레임워크2");
-        mav.addObject("price", 20000);
-        mav.setViewName("book/bookInfoView");
-        
-        return mav;
+    public ModelAndView showBookInfo2(ModelAndView mView) {
+    	mView.addObject("title", "스프링 프레임워크2");
+    	mView.addObject("price", 25000);
+    	mView.setViewName("book/bookInfoView"); 
+    	
+        return mView;
     }
 }

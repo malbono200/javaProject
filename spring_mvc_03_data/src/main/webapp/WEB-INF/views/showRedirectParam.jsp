@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Model and ModelAndView</title>
+<title>redirect:param</title>
 </head>
 <body>
-	제목 : ${title}<br>
-    가격 : ${price}
+	국가 : ${nation}
 </body>
 </html>
