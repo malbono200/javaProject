@@ -1,12 +1,16 @@
 package com.spring_mvc.mybatis.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring_mvc.mybatis.dto.ProductDTO;
 import com.spring_mvc.mybatis.service.ProductService;
@@ -72,4 +76,74 @@ public class ProductController {
 		service.deleteProduct(prdNo);
 		return "redirect:/product/listAllProduct";
 	}
+	
+	//상품번호 중복 확인 : post - 파라미터 전달
+	//rest 형식으로 반환
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck")
+	public String prdNoCheck(@RequestParam("prdNo") String prdNo) {
+		String result = service.prdNoCheck(prdNo); //상품번호 중복 체크 service에서 진행 결과만 반환
+		return result;
+	}
+	
+	//상품번호 중복 확인2 : get
+	//rest 형식으로 반환
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck1/{prdNo}")
+	public String prdNoCheck1(@PathVariable String prdNo) {
+		String result = service.prdNoCheck(prdNo); //상품번호 중복 체크 service에서 진행 결과만 반환
+		System.out.println(result);
+		return result;
+	}
+		
+	//상품번호 중복 확인3 : post - request Body를 통해 data 전달
+	//rest 형식으로 반환
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck4")
+	public String prdNoCheck4(@RequestBody String prdNo) {
+		String result = service.prdNoCheck(prdNo); //상품번호 중복 체크 service에서 진행 결과만 반환
+		System.out.println(result);
+		return result;
+	}
+	
+	//상품번호 중복 확인4 : axios get의 요청
+	//axios는 응답방식을 서버에게 요청하게 됨 스프링컨테이너가 해당 요청을 처리할때 data 필드에 반환값을 담아서 전송
+	//rest 형식으로 반환
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck5/{prdNo}")
+	public String prdNoCheck5(@PathVariable String prdNo) {
+		String result = service.prdNoCheck(prdNo); //상품번호 중복 체크 service에서 진행 결과만 반환
+		System.out.println(result);
+		return result;
+	}
+	
+	//상품번호 중복 확인5 : axios post의 요청시 전달되는 data는 key:value 타입으로 전달, 컨트롤러에서는 k:v 타입을 저장할 수 있는 객체를 활용해야 함
+	//header의 body 통해 전달
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck6")
+	public String prdNoCheck6(@RequestBody HashMap<String,String> map) {
+		String prdNo = map.get("prdNo");
+		String result = service.prdNoCheck(prdNo); //상품번호 중복 체크 service에서 진행 결과만 반환
+		System.out.println(result);
+		return result;
+	}
+	
+	//상품 검색 기능
+	
+	//상품 검색 폼 요청 - ArrayList 객체를 스프링컨테이너에게 반환하면 컨테이너는 json 형식으로 변환 후
+	// 클라이언트에게 전송 : jackson-databind 의존객체 필요
+	@RequestMapping("/product/productSearchForm1")
+	public String viewProductSearchForm1() {
+		return "product/productSearchForm1";
+	}
+	
+	//상품 검색 메소드 1
+	@ResponseBody
+	@RequestMapping("/product/productSearch1")
+	public ArrayList<ProductDTO> productSearch1(@RequestParam HashMap<String, Object> map) {
+	//public ArrayList<ProductDTO> productSearch1(@RequestParam String type, @RequestParam  String Keyword)
+		ArrayList<ProductDTO> prdList = service.productSearch(map);		
+		return prdList;
+	}	
+	
 }

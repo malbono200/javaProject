@@ -40,6 +40,16 @@ public class BookService implements IBookService {
 	public BookDTO detailViewBook(String bookNo) {
 		return dao.detailViewBook(bookNo);
 	}
+
+	@Override
+	public String bookNoCheck(String bookNo) {
+		String res = dao.bookNoCheck(bookNo);
+	    String result = "available";
+	    if(res != null) {
+	        result = "no_available";
+	    }
+	    return result;
+	}
 	
 	
 }

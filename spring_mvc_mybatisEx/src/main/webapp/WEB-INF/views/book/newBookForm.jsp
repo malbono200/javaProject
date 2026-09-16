@@ -4,21 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>bookForm</title>
+	<meta charset="UTF-8">
+	<title>bookForm</title>
+	<script type="text/javascript" src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/bookNoCheck3.js'/>"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h3>도서 등록</h3>
-    <form method="post" action="<c:url value='/book/insertBook'/>">
-        도서번호: <input type="text" name="bookNo"><br>
-        도서명: <input type="text" name="bookName"><br>
-        저자: <input type="text" name="bookAuthor"><br>
-        가격: <input type="number" name="bookPrice"><br>
-        재고: <input type="number" name="bookStock"><br>
-        출간일: <input type="date" name="bookDate"><br>
-        출판사번호: <input type="text" name="pubNo"><br><br>
-        <input type="submit" value="등록">
-    </form>
-    <a href="<c:url value='/book/listAllBook'/>">목록으로</a>
+	<form method="post" action="<c:url value='/book/insertBook'/>">
+		<table>
+			<tr><td>도서번호</td><td><input type="text" name="bookNo" id="bookNo">
+				<button id="bookNoCheckBtn">중복확인</button>
+			</td></tr>
+			<tr><td>도서명</td><td><input type="text" name="bookName"></td></tr>
+			<tr><td>저자</td><td><input type="text" name="bookAuthor"></td></tr>
+			<tr><td>가격</td><td><input type="number" name="bookPrice"></td></tr>
+			<tr><td>재고</td><td><input type="number" name="bookStock"></td></tr>
+			<tr><td>출간일</td><td><input type="date" name="bookDate"></td></tr>
+			<tr><td>출판사번호</td><td><input type="text" name="pubNo"></td></tr>
+			<tr><td colspan="2"><input type="submit" value="등록">
+			<input type="reset" value="취소"></td></tr>
+		</table>
+	</form>
+	<a href="<c:url value='/book/listAllBook'/>">목록으로</a>
 </body>
 </html>

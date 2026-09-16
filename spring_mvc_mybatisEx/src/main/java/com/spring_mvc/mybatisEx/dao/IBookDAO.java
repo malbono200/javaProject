@@ -10,4 +10,5 @@ public interface IBookDAO {
 	void deleteBook(String bookNo);
 	ArrayList<BookDTO> listAllBook();
     BookDTO detailViewBook(String bookNo);
+    String bookNoCheck(String bookNo);
 }

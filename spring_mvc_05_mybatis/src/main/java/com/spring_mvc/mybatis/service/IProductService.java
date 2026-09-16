@@ -1,6 +1,7 @@
 package com.spring_mvc.mybatis.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
  *  Service는 특정 웹 프레임워크의 제약을 받지 않는 순수 자가 객체로 구성
@@ -16,4 +17,6 @@ public interface IProductService {
 	void deleteProduct(String prdNo);
 	ArrayList<ProductDTO> listAllProduct();
 	ProductDTO detailViewProduct(String prdNo);
+	String prdNoCheck(String prdNo); 
+	ArrayList<ProductDTO> productSearch(HashMap<String, Object> map);
 }
