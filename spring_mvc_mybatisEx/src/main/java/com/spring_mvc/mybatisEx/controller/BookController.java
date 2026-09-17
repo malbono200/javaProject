@@ -96,4 +96,39 @@ public class BookController {
         System.out.println(result);
         return result;
     }
+    
+    //도서 검색 폼 요청1
+    @RequestMapping("/book/bookSearchForm1")
+    public String viewBookSearchForm1() {
+    	return "book/bookSearchForm1";
+    }
+
+    //도서 검색 메소드1 - ArrayList 객체를 반환하면 컨테이너가 json 형식으로 변환 후
+    //클라이언트에게 전송 : jackson-databind 의존객체 필요
+    @ResponseBody
+    @RequestMapping("/book/bookSearch1")
+    public ArrayList<BookDTO> bookSearch1(@RequestParam HashMap<String, Object> map) {
+    	ArrayList<BookDTO> bookList = service.bookSearch(map);
+    	return bookList;
+    }
+
+    //도서 검색 폼 요청2
+    @RequestMapping("/book/bookSearchForm2")
+    public String viewBookSearchForm2() {
+    	return "book/bookSearchForm2";
+    }
+    
+    //도서 검색 메소드2 - view 페이지 반환 (@ResponseBody 붙이면 안 됨)
+    @RequestMapping("/book/bookSearch2")
+    public String bookSearch2(@RequestParam HashMap<String, Object> map, Model model) {
+    	ArrayList<BookDTO> bookList = service.bookSearch(map);
+    	model.addAttribute("bookList", bookList);
+    	return "book/bookSearchResultView";
+    }
+
+    //도서 검색 폼 요청3
+    @RequestMapping("/book/bookSearchForm3")
+    public String viewBookSearchForm3() {
+    	return "book/bookSearchForm3";
+    }
 }

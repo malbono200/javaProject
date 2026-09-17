@@ -16,7 +16,7 @@ $(document).ready(function(){
 		} else {
 			$.ajax({
 			type:"post",
-			url:"/mybatis/product/productSearch1",
+			url:"/mybatis/product/productSearch3",
 			data:formData,
 			success:function(result){
 				//검색결과 표현하는 위치에 태그를 추가 태그객체.append()

@@ -10,7 +10,7 @@ window.onload = function(){
 		} else {
 			//axios의 post : data를 json(k:v)으로 구성해서 body에 담아 전달
 			let data = {"bookNo" : bookNo};
-			axios.post(contextPath + "/book/bookNoCheck3", data)
+			axios.post("/mybatisEx/book/bookNoCheck3", data)
 				.then(function(response){
 					if(response.data == "available"){
 						alert("사용 가능한 도서번호입니다. (axios)");

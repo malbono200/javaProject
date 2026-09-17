@@ -24,7 +24,11 @@
  	<!-- 수정 가능한 정보 -->
    <tr>
      <td width="200"><p align="right" >아이디</td>
-     <td width="400"><input   type="text" name="id" value="${memInfo.id}" disabled></td>
+     <td width="400">
+     <!-- input 태그 disabled 면 서버로 form 데이터가 전송 안됨 -->
+     <input type="text" name="id" value="${memInfo.id}" disabled>
+     <input type="hidden" name="id" value="${memInfo.id }">
+     </td>
      
    </tr>
    <!-- 수정 가능한 정보 -->

@@ -11,7 +11,7 @@ $(document).ready(function(){
 			//jQuery ajax : data 옵션에 담은 값이 파라미터로 전달됨
 			$.ajax({
 				type:"post",
-				url: contextPath + "/book/bookNoCheck",
+				url: "/mybatisEx/book/bookNoCheck",
 				data:{"bookNo":bookNo},
 				dataType:"text",
 				success:function(result){

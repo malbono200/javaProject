@@ -12,6 +12,9 @@
     <h4>도서 관리 시스템<img src="<c:url value='/resources/image/apple.png'/>"/></h4>
     <br>
     <a href="<c:url value='/book/listAllBook'/>">전체도서조회</a><br>
-    <a href="<c:url value='/book/newBookForm'/>">도서 등록</a>
+    <a href="<c:url value='/book/newBookForm'/>">도서 등록</a><br>
+    <a href="<c:url value='/book/bookSearchForm1'/>">도서 검색1</a><br>
+	<a href="<c:url value='/book/bookSearchForm2'/>">도서 검색2</a><br>
+	<a href="<c:url value='/book/bookSearchForm3'/>">도서 검색3</a><br>
 </body>
 </html>

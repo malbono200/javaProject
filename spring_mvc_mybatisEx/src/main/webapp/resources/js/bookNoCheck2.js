@@ -9,7 +9,7 @@ $(document).ready(function(){
 			return false;
 		} else {
 			//fetch의 get : url 경로에 값을 붙여서 전달 (슬래시 주의)
-			fetch(contextPath + "/book/bookNoCheck2/" + bookNo)
+			fetch("/mybatisEx/book/bookNoCheck2/" + bookNo)
 				.then(response => response.text())
 				.then(result => {
 					console.log(result);
