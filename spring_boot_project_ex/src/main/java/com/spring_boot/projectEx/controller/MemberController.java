@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,5 +73,38 @@ public class MemberController {
 		dto.setMemHp(memHp);
 		memService.insertMember(dto); //회원가입 완료 후
 		return "redirect:/member/loginForm"; //로그인 폼 요청
+	}
+	
+	//마이페이지 - 본인정보 확인
+	@GetMapping("/member/mypage")
+	public String myPage(HttpSession session, Model model) {
+		String memId = (String)session.getAttribute("sid");
+		if(memId == null) return "redirect:/member/loginForm";
+		model.addAttribute("mem", memService.selectMember(memId));
+		return "member/myPage";
+	}
+	
+	//회원정보 수정 처리
+	@PostMapping("/member/updateMember")
+	public String updateMember(MemberDTO dto, @RequestParam("memHp1") String memHp1,
+											  @RequestParam("memHp2") String memHp2,
+											  @RequestParam("memHp3") String memHp3,
+											  HttpSession session) {
+		String memId = (String)session.getAttribute("sid");
+		if(memId == null) return "redirect:/member/loginForm";
+		dto.setMemId(memId); //수정 대상 id는 폼이 아닌 세션에서 (다른 회원 정보 수정 방지)
+		dto.setMemHp(memHp1 + "-" + memHp2 + "-" + memHp3);
+		memService.updateMember(dto);
+		return "redirect:/member/myPage";
+	}
+	
+	//회원 탈퇴
+	@PostMapping("/member/deleteMember")
+	public String deleteMember(HttpSession session) {
+		String memId = (String)session.getAttribute("sid");
+		if(memId == null) return "redirect:/member/loginForm";
+		memService.deleteMember(memId);
+		session.invalidate(); //탈퇴 후 로그아웃
+		return "redirect:/";
 	}
 }

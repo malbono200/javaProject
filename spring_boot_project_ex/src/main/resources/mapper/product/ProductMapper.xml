@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 카테고리별 상품 조회 : ArrayList<ProductDTO> listCtgProduct(String ctgId) -->
-	<select id="listCtgProduct" parameterType="String" resultMap="prdResult">
+	<select id="listCtgProduct" parameterType="string" resultMap="prdResult">
 		SELECT * FROM product WHERE ctgId=#{ctgId} ORDER BY prdNo
 	</select>
 	

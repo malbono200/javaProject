@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring_boot.projectEx.dao.IMemberDAO;
 import com.spring_boot.projectEx.dto.MemberDTO;
@@ -42,8 +43,30 @@ public class MemberService implements IMemberService {
 
 	@Override
 	public String idCheck(String id) {
-		// TODO Auto-generated method stub
 		return dao.idCheck(id);
+	}
+
+	@Override
+	public MemberDTO selectMember(String memId) {
+		return dao.selectMember(memId);
+	}
+
+	@Override
+	public void updateMember(MemberDTO dto) {
+		//비밀번호를 입력한 경우에만 암호화 (비어 있으면 mapper에서 비밀번호 수정 제외)
+		if(dto.getMemPwd() != null && !dto.getMemPwd().isEmpty()) {
+			dto.setMemPwd(pwdEncoder.encode(dto.getMemPwd()));
+		}
+		dao.updateMember(dto);
+	}
+
+	@Override
+	@Transactional
+	public void deleteMember(String memId) {
+		dao.deleteMemberOrderProduct(memId);
+		dao.deleteMemberOrderInfo(memId);
+		dao.deleteMemberCart(memId);
+		dao.deleteMember(memId);
 	}
 	
 	

@@ -27,4 +27,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{memId},#{memPwd}, #{memName}, #{memEmail}, #{memHp}, #{memZipcode}, #{memAddress1},#{memAddress2})
 	</insert>
 	
+	<!-- 회원 정보 조회 : MemberDTO selectMember(String memId) -->
+	<select id="selectMember" parameterType="string" resultType="com.spring_boot.projectEx.dto.MemberDTO">
+		SELECT * FROM member WHERE memId=#{memId}
+	</select>
+	
+	<!-- 회원 정보 수정 : 비밀번호는 입력한 경우에만 변경 -->
+	<update id="updateMember" parameterType="com.spring_boot.projectEx.dto.MemberDTO">
+		UPDATE member
+		<set>
+			memName=#{memName}, memEmail=#{memEmail}, memHp=#{memHp},
+			memZipcode=#{memZipcode}, memAddress1=#{memAddress1}, memAddress2=#{memAddress2},
+			<if test="memPwd != null and memPwd != ''">memPwd=#{memPwd},</if>
+		</set>
+		WHERE memId=#{memId}
+	</update>
+	
+	<!-- 회원 탈퇴  -->
+	<delete id="deleteMemberOrderProduct" parameterType="string">
+		DELETE FROM order_product
+		WHERE ordNo IN (SELECT ordNo FROM order_info WHERE memId=#{memId})
+	</delete>
+	<delete id="deleteMemberOrderInfo" parameterType="string">
+		DELETE FROM order_info WHERE memId=#{memId}
+	</delete>
+	<delete id="deleteMemberCart" parameterType="string">
+		DELETE FROM cart WHERE memId=#{memId}
+	</delete>
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM member WHERE memId=#{memId}
+	</delete>
+	
 	</mapper>
