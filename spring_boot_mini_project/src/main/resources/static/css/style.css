@@ -1,0 +1,95 @@
+/* ===== 색상 변수 (스카이 + 옐로) ===== */
+:root {
+  --main: #378ADD;   --main-light: #E6F1FB;   --main-dark: #0C447C;
+  --point: #EF9F27;  --point-light: #FAEEDA;  --point-dark: #633806;
+  --text: #2C2C2A;   --text-sub: #5F5E5A;     --gray-bg: #F1EFE8;
+  --radius: 12px;
+}
+
+/* ===== 공통 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Pretendard', sans-serif; font-size: 14px; color: var(--text); }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+.inner { width: 1200px; margin: 0 auto; }
+.tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 4px;
+       background: var(--point-light); color: var(--point-dark); }
+.btnMain { display: inline-block; padding: 8px 18px; border-radius: 6px; background: var(--main); color: #fff; }
+.btnMain:hover { background: var(--main-dark); }
+
+/* ===== 관리자 바 ===== */
+#adminBar { background: #2C2C2A; color: #F1EFE8; font-size: 12px; }
+#adminBar .inner { display: flex; justify-content: space-between; align-items: center; height: 32px; }
+#adminBar ul { display: flex; gap: 20px; }
+#adminBar a:hover { color: var(--point); }
+
+/* ===== 헤더 ===== */
+#headerBox { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+#logoBox a { display: flex; align-items: center; justify-content: center; width: 140px; height: 44px;
+             border: 2px dashed var(--main); border-radius: 8px; color: var(--main); font-weight: 700; }
+#searchBox { display: flex; align-items: center; width: 400px; height: 42px;
+             border: 2px solid var(--main); border-radius: 21px; padding: 0 10px 0 18px; }
+#searchBox input { flex: 1; border: none; outline: none; font-size: 14px; font-family: inherit; }
+#searchBox button { font-size: 20px; color: var(--main); }
+#topMenuBox { display: flex; align-items: center; gap: 16px; color: var(--text-sub); }
+#topMenuBox a:hover { color: var(--main); }
+#topMenuBox .ti { font-size: 22px; vertical-align: middle; }
+
+/* ===== 메인 메뉴 ===== */
+#mainMenu { background: var(--main); }
+#mainMenu ul { display: flex; align-items: center; gap: 36px; height: 48px; color: #fff; font-weight: 600; }
+#mainMenu a:hover { color: var(--point-light); }
+#mainMenu .event { margin-left: auto; }
+#mainMenu .event a { background: var(--point); padding: 4px 14px; border-radius: 14px; }
+
+/* ===== 슬라이드 ===== */
+#slideShow { position: relative; margin-top: 24px; height: 320px; border-radius: var(--radius); overflow: hidden; }
+#slidePanel { display: flex; height: 100%; transition: transform 0.5s; }
+.slide { flex: 0 0 100%; display: flex; align-items: center; padding: 0 60px; }
+.slide1 { background: var(--main-light); }
+.slide2 { background: var(--point-light); }
+.slide3 { background: #E1F5EE; }
+.slideText h2 { font-size: 34px; margin: 12px 0 8px; color: var(--main-dark); }
+.slideText p { font-size: 16px; color: var(--text-sub); margin-bottom: 20px; }
+#prevBtn, #nextBtn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px;
+                     border-radius: 50%; background: rgba(255,255,255,0.8); font-size: 20px; }
+#prevBtn { left: 16px; }
+#nextBtn { right: 16px; }
+#slideDots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 4px; background: #B4B2A9; cursor: pointer; transition: width 0.3s; }
+.dot.on { width: 24px; background: var(--main); }
+
+/* ===== 인원 선택 ===== */
+#playerBox { display: flex; justify-content: space-between; align-items: center; margin-top: 24px;
+             padding: 24px 32px; border: 1px solid var(--main-light); border-radius: var(--radius); }
+#playerBox h3 { font-size: 20px; color: var(--main-dark); }
+#playerBox p { color: var(--text-sub); margin-top: 4px; }
+#playerBtns { display: flex; gap: 8px; }
+#playerBtns a { padding: 10px 20px; border: 1px solid var(--main); border-radius: 22px; color: var(--main-dark); }
+#playerBtns a:hover, #playerBtns a.on { background: var(--main); color: #fff; }
+
+/* ===== 섹션 제목 ===== */
+.sectionTitle { display: flex; justify-content: space-between; align-items: baseline; margin: 48px 0 16px; }
+.sectionTitle h3 { font-size: 22px; }
+.sectionTitle a { color: var(--text-sub); font-size: 13px; }
+
+/* ===== 상품 목록 ===== */
+.prdList { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.prdImg { height: 240px; border-radius: var(--radius); background: var(--gray-bg); }
+.prdName { margin-top: 12px; font-size: 15px; }
+.prdPrice { margin-top: 4px; font-size: 17px; font-weight: 700; }
+.prdTags { margin-top: 8px; display: flex; gap: 4px; }
+
+/* ===== 카테고리 ===== */
+.ctgList { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.ctgList a { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0;
+             border-radius: var(--radius); background: var(--main-light); color: var(--main-dark); font-weight: 600; }
+.ctgList .ti { font-size: 32px; color: var(--main); }
+.ctgList a:hover { background: var(--main); color: #fff; }
+.ctgList a:hover .ti { color: #fff; }
+
+/* ===== 푸터 ===== */
+footer { margin-top: 60px; background: var(--gray-bg); color: var(--text-sub); font-size: 13px; }
+footer .inner { padding: 30px 0; line-height: 1.8; }
+footer .footerLinks { display: flex; gap: 16px; margin-bottom: 8px; font-weight: 600; }
