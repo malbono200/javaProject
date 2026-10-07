@@ -3,7 +3,7 @@
 */
 
 $(document).ready(function(){
-	$("#idCheck").click(function(){
+	$("#idCheck").click(function(event){
 		event.preventDefault();
 		
 		let memId = $('#memId').val();

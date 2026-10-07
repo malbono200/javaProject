@@ -104,11 +104,11 @@
     <!-- 카테고리 바로가기 -->
     <div class="sectionTitle"><h3>카테고리별 둘러보기</h3></div>
     <ul class="ctgList">
-      <li><a href="<c:url value='/product/productListCtg/1'/>"><i class="ti ti-confetti"></i>카테고리 1</a></li>
-      <li><a href="<c:url value='/product/productListCtg/2'/>"><i class="ti ti-chess"></i>카테고리 2</a></li>
-      <li><a href="<c:url value='/product/productListCtg/3'/>"><i class="ti ti-users-group"></i>카테고리 3</a></li>
-      <li><a href="<c:url value='/product/productListCtg/4'/>"><i class="ti ti-heart"></i>카테고리 4</a></li>
-      <li><a href="<c:url value='/product/productListCtg/5'/>"><i class="ti ti-box"></i>카테고리 5</a></li>
+      <li><a href="<c:url value='/product/productListCtg/1'/>"><i class="ti ti-confetti"></i>파티게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/2'/>"><i class="ti ti-chess"></i>전략게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/3'/>"><i class="ti ti-users-group"></i>협력게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/4'/>"><i class="ti ti-spy"></i>추리게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/5'/>"><i class="ti ti-cards"></i>카드게임</a></li>
     </ul>
   </section>
 

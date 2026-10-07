@@ -11,7 +11,7 @@ $(document).ready(function(){
 					let address1 = "";
 					let address2 = "";
 					
-					if(data.userSelectedType='R'){ //사용자 선택 주소가 도로명인경우
+					if(data.userSelectedType ==='R'){ //사용자 선택 주소가 도로명인경우
 						address1 = data.roadAddress + "(" + data.bname + data.buildingName + ")";
 					} else { //사용자 선택 주소가 지번 주소인 경우
 						address1 = data.jibunAddress;

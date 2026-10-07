@@ -1,7 +1,7 @@
 //login 비동기방식
 
 $(document).ready(function(){
-	$('#loginForm').on('submit', function(){
+	$('#loginForm').on('submit', function(event){
 		event.preventDefault();
 		$.ajax({
 			type:"post",

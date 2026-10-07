@@ -34,7 +34,7 @@ public class MemberController {
 	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
 		String result = memService.loginCheck(param);
 		//로그인 성공시 session 속성 추가->로그인 유지
-		if(result == "success") {
+		if("success".equals(result)) {
 			System.out.println((String)param.get("id"));
 			session.setAttribute("sid", param.get("id"));
 			MemberDTO mem = memService.selectMember((String)param.get("id"));
@@ -49,13 +49,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//회원가입 폼 요청
+	//회원가입 폼
 	@GetMapping("/member/joinForm")
 	public String joinForm() {
 		return "member/joinForm";
 	}
 	
-	//id 중복 체크 요청 처리
+	//id 중복 체크
 	@ResponseBody
 	@PostMapping("/member/idCheck")
 	public int idCheck(@RequestParam String id) {
@@ -76,16 +76,16 @@ public class MemberController {
 		return "redirect:/member/loginForm"; 
 	}
 	
-	//마이페이지 - 본인정보 확인
+	//마이페이지
 	@GetMapping("/member/mypage")
 	public String myPage(HttpSession session, Model model) {
 		String memId = (String)session.getAttribute("sid");
 		if(memId == null) return "redirect:/member/loginForm";
 		model.addAttribute("mem", memService.selectMember(memId));
-		return "member/myPage";
+		return "member/mypage";
 	}
 	
-	//회원정보 수정 처리
+	//회원정보 수정
 	@PostMapping("/member/updateMember")
 	public String updateMember(MemberDTO dto, @RequestParam("memHp1") String memHp1, @RequestParam("memHp2") String memHp2, @RequestParam("memHp3") String memHp3, HttpSession session) {
 		String memId = (String)session.getAttribute("sid");
@@ -93,7 +93,7 @@ public class MemberController {
 		dto.setMemId(memId); 
 		dto.setMemHp(memHp1 + "-" + memHp2 + "-" + memHp3);
 		memService.updateMember(dto);
-		return "redirect:/member/myPage";
+		return "redirect:/member/mypage";
 	}
 	
 	//회원 탈퇴

@@ -21,16 +21,16 @@
 	        	<table>
 		            <tr>
 		            	<th> 성명</th>
-		           		<td><input type="text" id="memName" name="memName" ></td>
+		           		<td><input type="text" id="memName" name="memName" required></td>
 	           		</tr>
 		            <tr>
 		            	<th> ID</th>
-		            	<td><input type="text" id="memId" name="memId" > 
+		            	<td><input type="text" id="memId" name="memId" required> 
 		            		<input type="button" id="idCheck" value="ID 중복 체크"></td>
 	            	</tr>
 		            <tr>
 		            	<th>비밀번호</th>
-		            	<td><input type="password" id="memPwd" name="memPwd"></td>
+		            	<td><input type="password" id="memPwd" name="memPwd" required></td>
 	            	</tr>
 		            <tr>
 		            	<th>휴대폰 번호</th>

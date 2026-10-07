@@ -46,11 +46,11 @@
 <nav id="mainMenu">
   <div class="inner">
     <ul>
-      <li><a href="<c:url value='/product/productListCtg/1'/>">카테고리 1</a></li>
-      <li><a href="<c:url value='/product/productListCtg/2'/>">카테고리 2</a></li>
-      <li><a href="<c:url value='/product/productListCtg/3'/>">카테고리 3</a></li>
-      <li><a href="<c:url value='/product/productListCtg/4'/>">카테고리 4</a></li>
-      <li><a href="<c:url value='/product/productListCtg/5'/>">카테고리 5</a></li>
+      <li><a href="<c:url value='/product/productListCtg/1'/>">파티게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/2'/>">전략게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/3'/>">협력게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/4'/>">추리게임</a></li>
+      <li><a href="<c:url value='/product/productListCtg/5'/>">카드게임</a></li>
       <li class="event"><a href="#">이벤트</a></li>
     </ul>
   </div>

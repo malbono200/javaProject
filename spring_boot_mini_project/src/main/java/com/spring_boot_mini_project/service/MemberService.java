@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring_boot_mini_project.dao.IMemberDAO;
 import com.spring_boot_mini_project.dto.MemberDTO;
@@ -58,6 +59,7 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
+	@Transactional 
 	public void deleteMember(String memId) {
 		dao.deleteMemberOrderProduct(memId);
 		dao.deleteMemberOrderInfo(memId);
