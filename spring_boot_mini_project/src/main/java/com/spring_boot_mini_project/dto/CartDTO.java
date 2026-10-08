@@ -7,6 +7,7 @@ public class CartDTO {
 	private int cartQty;
 	private String prdName;
 	private int prdPrice;
+	private int prdStock;
 	
 	public int getCartNo() {
 		return cartNo;
@@ -43,6 +44,12 @@ public class CartDTO {
 	}
 	public void setPrdPrice(int prdPrice) {
 		this.prdPrice = prdPrice;
+	}
+	public int getPrdStock() {
+		return prdStock;
+	}
+	public void setPrdStock(int prdStock) {
+		this.prdStock = prdStock;
 	}
 	
 }

@@ -186,3 +186,5 @@ footer .footerLinks { display: flex; gap: 16px; margin-bottom: 8px; font-weight:
 .cartBtns { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
 .cartBtns > * { width: 200px; height: 52px; border-radius: 8px; font-size: 16px; font-family: inherit;
                 cursor: pointer; display: flex; align-items: center; justify-content: center; }
+                
+                .btnSoldOut { border: none; background: #D3D1C7; color: #fff; cursor: not-allowed; }

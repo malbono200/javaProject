@@ -65,8 +65,15 @@
               <a class="btnFill" href="<c:url value='/member/loginForm'/>">로그인 후 구매하기</a>
             </c:if>
             <c:if test="${not empty sessionScope.sid}">
-              <input type="submit" class="btnLine" value="장바구니">
-              <input type="submit" class="btnFill" value="바로 구매">
+            	<c:choose>
+	                <c:when test="${prd.prdStock == 0}">
+	                  <button type="button" class="btnSoldOut" disabled>품절</button>
+	                </c:when>
+	                <c:otherwise>
+	                  <input type="submit" class="btnLine" value="장바구니">
+	                  <input type="submit" class="btnFill" value="바로 구매">
+	                </c:otherwise>
+              	</c:choose>
             </c:if>
           </div>
         </form>

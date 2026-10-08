@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring_boot_mini_project.dao.ICartDAO">
+
+	<!-- 같은 상품이 장바구니에 있는지 확인 -->
+	<select id="checkPrdInCart" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM cart
+		WHERE prdNo=#{prdNo} AND memId=#{memId}
+	</select>
+
+	<!-- 새 상품 담기 (cartNo는 자동 증가) -->
+	<insert id="insertCart" parameterType="com.spring_boot_mini_project.dto.CartDTO">
+		INSERT INTO cart(memId, prdNo, cartQty)
+		SELECT #{memId}, #{prdNo}, LEAST(#{cartQty}, prdStock)
+		FROM product
+		WHERE prdNo=#{prdNo} AND prdStock > 0
+	</insert>
+
+	<!-- 이미 있는 상품이면 기존 수량에 더하기 -->
+	<update id="updateQtyInCart" parameterType="com.spring_boot_mini_project.dto.CartDTO">
+		UPDATE cart
+		SET cartQty = LEAST(cartQty + #{cartQty}, (SELECT prdStock FROM product WHERE prdNo=#{prdNo}))
+		WHERE memId=#{memId} AND prdNo=#{prdNo}
+	</update>
+
+	<!-- 장바구니 목록 (product와 조인) -->
+	<select id="cartList" parameterType="string" resultType="com.spring_boot_mini_project.dto.CartDTO">
+		SELECT c.cartNo, p.prdNo, p.prdName, p.prdPrice, c.cartQty, c.memId
+		FROM product p, cart c
+		WHERE p.prdNo=c.prdNo AND c.memId=#{memId}
+		ORDER BY c.cartNo
+	</select>
+
+	<!-- 선택 삭제 -->
+	<delete id="deleteCart" parameterType="List">
+		DELETE FROM cart
+		WHERE cartNo IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 주문 전 수량 변경 -->
+	<update id="updateCart" parameterType="com.spring_boot_mini_project.dto.CartDTO">
+		UPDATE cart SET cartQty=#{cartQty}
+		WHERE cartNo=#{cartNo}
+	</update>
+
+</mapper>
