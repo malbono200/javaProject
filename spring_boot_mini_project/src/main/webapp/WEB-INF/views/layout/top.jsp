@@ -7,11 +7,9 @@
     <div class="inner">
       <span><i class="ti ti-shield-lock"></i> 관리자 모드</span>
       <ul>
-        <li><a href="#">상품 등록</a></li>
-        <li><a href="#">상품 목록·수정</a></li>
-        <li><a href="#">재고 관리</a></li>
-        <li><a href="#">주문 관리</a></li>
-        <li><a href="#">회원 관리</a></li>
+        <li><a href="<c:url value='/admin/productForm'/>">상품 등록</a></li>
+        <li><a href="<c:url value='/admin/productList'/>">상품 목록·수정</a></li>
+        <li><a href="<c:url value='/admin/orderList'/>">주문 관리</a></li>
       </ul>
     </div>
   </div>
@@ -19,11 +17,11 @@
 
 <header>
   <div class="inner" id="headerBox">
-    <div id="logoBox"><a href="<c:url value='/'/>">LOGO</a></div>
+    <div id="logoBox"><a href="<c:url value='/'/>">보드온</a></div>
 
-    <form id="searchBox">
-      <input type="text" placeholder="어떤 게임을 찾으세요?">
-      <button type="button"><i class="ti ti-search"></i></button>
+    <form id="searchBox" action="<c:url value='/product/search'/>" method="get">
+      <input type="text" name="keyword" value="${param.keyword}" placeholder="어떤 게임을 찾으세요?">
+      <button type="submit"><i class="ti ti-search"></i></button>
     </form>
 
     <div id="topMenuBox">
@@ -51,7 +49,6 @@
       <li><a href="<c:url value='/product/productListCtg/3'/>">협력게임</a></li>
       <li><a href="<c:url value='/product/productListCtg/4'/>">추리게임</a></li>
       <li><a href="<c:url value='/product/productListCtg/5'/>">카드게임</a></li>
-      <li class="event"><a href="#">이벤트</a></li>
     </ul>
   </div>
 </nav>

@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 장바구니 목록 (product와 조인) -->
 	<select id="cartList" parameterType="string" resultType="com.spring_boot_mini_project.dto.CartDTO">
-		SELECT c.cartNo, p.prdNo, p.prdName, p.prdPrice, c.cartQty, c.memId
+		SELECT c.cartNo, p.prdNo, p.prdName, p.prdPrice, p.prdStock, c.cartQty, c.memId
 		FROM product p, cart c
 		WHERE p.prdNo=c.prdNo AND c.memId=#{memId}
 		ORDER BY c.cartNo

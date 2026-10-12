@@ -15,7 +15,7 @@
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/views/layout/top.jsp"/>
-		<section>
+		<section class="inner" id="myPage">
 			<h1 id="title">마이페이지</h1>
 			
 			<!-- (1) 회원정보 : 본인정보 확인 + 수정 -->
@@ -23,7 +23,7 @@
 			<!-- 저장된 휴대폰 번호(010-1234-5678)를 3칸으로 분리 -->
 			<c:set var="hp" value="${fn:split(mem.memHp, '-')}"/>
 			<form method="post" action="<c:url value='/member/updateMember'/>">
-				<table border="1" width="600">
+				<table class="orderTable">
 					<tr><th>ID</th><td>${mem.memId}</td></tr>
 					<tr><th>가입일</th><td><fmt:formatDate value="${mem.memJoinDate}" pattern="yyyy-MM-dd"/></td></tr>
 					<tr><th>성명</th>

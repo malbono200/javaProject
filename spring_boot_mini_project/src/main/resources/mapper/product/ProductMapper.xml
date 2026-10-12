@@ -14,5 +14,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="detailViewProduct" parameterType="string" resultType="com.spring_boot_mini_project.dto.ProductDTO">
 		SELECT * FROM product WHERE prdNo=#{prdNo}
 	</select>
+	
+	<!-- 관리자 : 전체 상품 목록 -->
+	<select id="listAllProduct" resultType="com.spring_boot_mini_project.dto.ProductDTO">
+		SELECT * FROM product ORDER BY prdNo
+	</select>
 
+	<!-- 관리자 : 상품 등록 (상품번호 = 가장 큰 번호 + 1) -->
+	<insert id="insertProduct" parameterType="com.spring_boot_mini_project.dto.ProductDTO">
+		INSERT INTO product(prdNo, prdName, prdPrice, prdCompany, prdStock, prdDescript, ctgId,
+		                    minPlayer, maxPlayer, playTime, difficulty)
+		VALUES((SELECT TO_CHAR(NVL(MAX(TO_NUMBER(prdNo)), 1000) + 1) FROM product),
+		       #{prdName}, #{prdPrice}, #{prdCompany, jdbcType=VARCHAR}, #{prdStock},
+		       #{prdDescript, jdbcType=VARCHAR}, #{ctgId},
+		       #{minPlayer}, #{maxPlayer}, #{playTime}, #{difficulty})
+	</insert>
+
+	<!-- 관리자 : 상품 수정 -->
+	<update id="updateProduct" parameterType="com.spring_boot_mini_project.dto.ProductDTO">
+		UPDATE product
+		SET prdName=#{prdName}, prdPrice=#{prdPrice}, prdCompany=#{prdCompany, jdbcType=VARCHAR},
+		    prdStock=#{prdStock}, prdDescript=#{prdDescript, jdbcType=VARCHAR}, ctgId=#{ctgId},
+		    minPlayer=#{minPlayer}, maxPlayer=#{maxPlayer}, playTime=#{playTime}, difficulty=#{difficulty}
+		WHERE prdNo=#{prdNo}
+	</update>
+
+	<!-- 관리자 : 상품 삭제 (장바구니에 담긴 것은 ON DELETE CASCADE로 같이 삭제) -->
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM product WHERE prdNo=#{prdNo}
+	</delete>
+	
+	<!-- 메인 : 인기 게임 4개 (판매 수량 많은 순, 같으면 최근 등록 순) -->
+	<select id="bestProduct" resultType="com.spring_boot_mini_project.dto.ProductDTO">
+		SELECT * FROM (
+			SELECT p.*,
+			       NVL((SELECT SUM(op.ordQty) FROM order_product op WHERE op.prdNo=p.prdNo), 0) AS sold
+			FROM product p
+			ORDER BY sold DESC, p.prdNo DESC
+		)
+		WHERE ROWNUM &lt;= 4
+	</select>
+
+	<!-- 인원별 상품 : 게임 인원 범위가 버튼 범위와 겹치면 표시 -->
+	<select id="listPlayerProduct" parameterType="hashmap" resultType="com.spring_boot_mini_project.dto.ProductDTO">
+		SELECT * FROM product
+		WHERE minPlayer &lt;= #{max} AND maxPlayer &gt;= #{min}
+		ORDER BY prdNo
+	</select>
+	
+	<!-- 상품 검색 : 상품명 또는 제조사에 검색어 포함 -->
+	<select id="searchProduct" parameterType="string" resultType="com.spring_boot_mini_project.dto.ProductDTO">
+		SELECT * FROM product
+		WHERE UPPER(prdName) LIKE '%' || UPPER(#{keyword}) || '%'
+		   OR UPPER(prdCompany) LIKE '%' || UPPER(#{keyword}) || '%'
+		ORDER BY prdNo
+	</select>
 </mapper>

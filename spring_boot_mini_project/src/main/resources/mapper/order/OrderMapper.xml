@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring_boot_mini_project.dao.IOrderDAO">
+
+	<!-- 장바구니 상품 개수 -->
+	<select id="countCart" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM cart WHERE memId=#{memId}
+	</select>
+
+	<!-- 재고보다 많이 담긴 상품 개수 -->
+	<select id="countOverStock" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM cart c, product p
+		WHERE c.prdNo=p.prdNo AND c.memId=#{memId} AND c.cartQty > p.prdStock
+	</select>
+
+	<!-- 주문·배송 정보 저장 (ordDate, ordStatus는 DEFAULT 값 사용) -->
+	<insert id="insertOrderInfo" parameterType="com.spring_boot_mini_project.dto.OrderInfoDTO">
+		INSERT INTO order_info(ordNo, memId, ordReceiver, ordRcvZipcode, ordRcvAddress1, ordRcvAddress2, ordRcvPhone)
+		VALUES(#{ordNo}, #{memId}, #{ordReceiver}, #{ordRcvZipcode}, #{ordRcvAddress1}, #{ordRcvAddress2}, #{ordRcvPhone})
+	</insert>
+
+	<!-- 장바구니 상품을 주문 상품으로 저장 -->
+	<insert id="insertOrderProduct" parameterType="hashmap">
+		INSERT INTO order_product(ordNo, prdNo, ordQty)
+		SELECT #{ordNo}, prdNo, cartQty FROM cart WHERE memId=#{memId}
+	</insert>
+
+	<!-- 재고 차감 : 장바구니에 담긴 수량만큼 빼기 -->
+	<update id="decreaseStock" parameterType="string">
+		UPDATE product p
+		SET prdStock = prdStock - (SELECT c.cartQty FROM cart c WHERE c.prdNo=p.prdNo AND c.memId=#{memId})
+		WHERE prdNo IN (SELECT prdNo FROM cart WHERE memId=#{memId})
+	</update>
+
+	<!-- 주문 후 장바구니 비우기 -->
+	<delete id="deleteCartAfterOrder" parameterType="string">
+		DELETE FROM cart WHERE memId=#{memId}
+	</delete>
+	
+	<!-- 주문 목록 : memId가 있으면 그 회원 주문만, null이면 전체(관리자) -->
+	<select id="orderList" parameterType="string" resultType="com.spring_boot_mini_project.dto.OrderInfoDTO">
+		SELECT o.*,
+		       (SELECT SUM(p.prdPrice * op.ordQty) FROM order_product op, product p
+		         WHERE op.prdNo=p.prdNo AND op.ordNo=o.ordNo) AS totalPrice,
+		         (SELECT LISTAGG(p.prdName || ' ' || op.ordQty || '개', ', ') WITHIN GROUP (ORDER BY p.prdName)
+		          FROM order_product op, product p
+		         WHERE op.prdNo=p.prdNo AND op.ordNo=o.ordNo) AS orderItems
+		FROM order_info o
+		<where>
+			<if test="_parameter != null">o.memId=#{memId}</if>
+		</where>
+		ORDER BY o.ordDate DESC
+	</select>
+
+	<!-- 배송 상태 변경 -->
+	<update id="updateOrderStatus" parameterType="com.spring_boot_mini_project.dto.OrderInfoDTO">
+		UPDATE order_info SET ordStatus=#{ordStatus} WHERE ordNo=#{ordNo}
+	</update>
+	
+</mapper>

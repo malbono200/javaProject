@@ -14,6 +14,7 @@
 
   <section class="inner">
     <h2 class="pageTitle">장바구니</h2>
+    <c:if test="${not empty msg}"><script>alert('${msg}');</script></c:if>
 
     <!-- 비어 있을 때 -->
     <c:if test="${empty cartList}">

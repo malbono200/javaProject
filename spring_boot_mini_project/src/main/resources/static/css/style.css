@@ -187,4 +187,79 @@ footer .footerLinks { display: flex; gap: 16px; margin-bottom: 8px; font-weight:
 .cartBtns > * { width: 200px; height: 52px; border-radius: 8px; font-size: 16px; font-family: inherit;
                 cursor: pointer; display: flex; align-items: center; justify-content: center; }
                 
-                .btnSoldOut { border: none; background: #D3D1C7; color: #fff; cursor: not-allowed; }
+.btnSoldOut { border: none; background: #D3D1C7; color: #fff; cursor: not-allowed; }
+
+/* ===== 주문서 / 주문 완료 ===== */
+.orderSub { font-size: 18px; margin: 32px 0 0; padding-bottom: 12px; border-bottom: 2px solid var(--text); }
+.orderList li { grid-template-columns: 90px 1fr 120px 80px 140px; }
+
+.orderTable { width: 100%; border-collapse: collapse; }
+.orderTable th { width: 140px; text-align: left; font-weight: 600; border-bottom: 1px solid #D3D1C7; }
+.orderTable td { padding: 14px 0; border-bottom: 1px solid #D3D1C7; }
+.orderTable input[type=text] { height: 40px; padding: 0 12px; border: 1px solid #D3D1C7; border-radius: 6px;
+                               font-family: inherit; font-size: 14px; outline: none; }
+.orderTable input[type=text]:focus { border-color: var(--main); }
+.orderTable input.hp { width: 80px; }
+.orderTable input.wide { width: 480px; margin-top: 6px; }
+.orderTable input[type=button] { height: 40px; padding: 0 14px; border: 1px solid var(--main); border-radius: 6px;
+                                 background: #fff; color: var(--main-dark); font-family: inherit; cursor: pointer; }
+.orderTable + .cartBtns { margin-top: 32px; }
+
+.orderDone { text-align: center; padding: 80px 0 40px; }
+.orderDone .ti { font-size: 72px; color: var(--main); }
+.orderDone h2 { font-size: 28px; margin: 16px 0 8px; }
+.orderDone p { color: var(--text-sub); margin-bottom: 32px; }
+
+/* ===== 마이페이지 ===== */
+#myPage { width: 700px; }
+#myPage h3 { font-size: 18px; margin: 32px 0 0; padding-bottom: 12px; border-bottom: 2px solid var(--text); }
+#myPage input[type=password], #myPage input[type=email] {
+  height: 40px; padding: 0 12px; border: 1px solid #D3D1C7; border-radius: 6px;
+  font-family: inherit; font-size: 14px; outline: none; }
+#myPage input:focus { border-color: var(--main); }
+#myPage input[name^=memHp] { width: 80px; }
+#myPage #memAddress1, #myPage #memAddress2 { width: 100%; margin-top: 6px; }
+
+/* 버튼 */
+#myPage input[type=submit], #myPage input[type=reset], #myPage button {
+  margin-top: 16px; padding: 10px 24px; border: 1px solid var(--main); border-radius: 6px;
+  background: #fff; color: var(--main-dark); font-family: inherit; font-size: 14px; cursor: pointer; }
+#myPage input[value="회원정보 수정"] { background: var(--main); color: #fff; }
+#myPage input[value="회원 탈퇴"] { border-color: #E24B4A; color: #A32D2D; }
+
+/* ===== 관리자 : 상품 목록 ===== */
+.adminHead { display: flex; justify-content: space-between; align-items: center; }
+.adminHead .btnFill { padding: 10px 20px; border-radius: 6px; margin-top: 40px; }
+.adminTable { width: 100%; border-collapse: collapse; font-size: 14px; }
+.adminTable th { background: var(--main-light); color: var(--main-dark); padding: 12px 8px; font-weight: 600; }
+.adminTable td { padding: 12px 8px; border-bottom: 1px solid #D3D1C7; text-align: center; }
+.adminTable td.left { text-align: left; }
+.adminTable td.left a:hover { color: var(--main); }
+.adminTable .soldOut { color: #A32D2D; font-weight: 600; }
+.rowBtns { display: flex; gap: 4px; justify-content: center; }
+.rowBtns a, .rowBtns button { padding: 4px 10px; border: 1px solid var(--main); border-radius: 4px; background: #fff;
+                              color: var(--main-dark); font-size: 13px; font-family: inherit; cursor: pointer; }
+.rowBtns button { border-color: #E24B4A; color: #A32D2D; }
+
+/* ===== 관리자 : 상품 등록·수정 ===== */
+#adminForm { width: 700px; }
+#adminForm input[type=number], #adminForm select, #adminForm textarea {
+  height: 40px; padding: 0 12px; border: 1px solid #D3D1C7; border-radius: 6px;
+  font-family: inherit; font-size: 14px; outline: none; }
+#adminForm input:focus, #adminForm select:focus, #adminForm textarea:focus { border-color: var(--main); }
+#adminForm input[type=text], #adminForm textarea { width: 100%; }
+#adminForm input[type=number] { width: 120px; }
+#adminForm textarea { height: 100px; padding: 10px 12px; resize: vertical; }
+#adminForm .orderTable + .cartBtns { margin-top: 32px; }
+
+/* ===== 주문 목록 (회원 / 관리자) ===== */
+.adminTable small { color: var(--text-sub); font-size: 12px; }
+.status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;
+          background: var(--gray-bg); color: var(--text-sub); }
+.status.ing { background: var(--point-light); color: var(--point-dark); }
+.status.done { background: var(--main-light); color: var(--main-dark); }
+.statusForm { display: flex; gap: 4px; justify-content: center; }
+.statusForm select { height: 30px; padding: 0 6px; border: 1px solid #D3D1C7; border-radius: 4px; font-family: inherit; }
+.statusForm button { padding: 0 10px; border: 1px solid var(--main); border-radius: 4px; background: #fff;
+                     color: var(--main-dark); font-family: inherit; cursor: pointer; }
+.listBtns { margin-top: 32px; }

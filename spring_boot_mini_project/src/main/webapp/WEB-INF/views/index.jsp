@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>쇼핑몰 이름</title>
+  <title>보드온</title>
   <c:import url="/WEB-INF/views/layout/head.jsp"></c:import>
 </head>
 <body>
@@ -17,26 +18,26 @@
       <div id="slidePanel">
         <div class="slide slide1">
           <div class="slideText">
-            <span class="tag">태그</span>
-            <h2>배너 제목 1</h2>
-            <p>배너 설명 문구</p>
-            <a href="#" class="btnMain">보러 가기</a>
+            <span class="tag">파티게임</span>
+            <h2>이번 주말, 친구들과 한 판</h2>
+            <p>여럿이 모이면 꼭 꺼내는 파티게임 모음</p>
+            <a href="<c:url value='/product/productListCtg/1'/>" class="btnMain">보러 가기</a>
           </div>
         </div>
         <div class="slide slide2">
           <div class="slideText">
-            <span class="tag">태그</span>
-            <h2>배너 제목 2</h2>
-            <p>배너 설명 문구</p>
-            <a href="#" class="btnMain">보러 가기</a>
+            <span class="tag">2인 추천</span>
+            <h2>둘이서도 충분히 재밌게</h2>
+            <p>커플, 친구와 함께하는 2인 게임 모음</p>
+            <a href="<c:url value='/product/productListPlayer/2'/>" class="btnMain">보러 가기</a>
           </div>
         </div>
         <div class="slide slide3">
           <div class="slideText">
-            <span class="tag">태그</span>
-            <h2>배너 제목 3</h2>
-            <p>배너 설명 문구</p>
-            <a href="#" class="btnMain">보러 가기</a>
+            <span class="tag">추리게임</span>
+            <h2>우리 중에 거짓말쟁이가 있다</h2>
+            <p>정체를 숨기고 서로를 의심하는 추리게임 모음</p>
+            <a href="<c:url value='/product/productListCtg/4'/>" class="btnMain">보러 가기</a>
           </div>
         </div>
       </div>
@@ -54,51 +55,31 @@
         <p>인원을 고르면 맞는 게임만 보여드려요</p>
       </div>
       <div id="playerBtns">
-        <a href="#"><i class="ti ti-user"></i> 혼자</a>
-        <a href="#"><i class="ti ti-users"></i> 2인</a>
-        <a href="#">3~4인</a>
-        <a href="#">5인 이상</a>
+        <a href="<c:url value='/product/productListPlayer/1'/>"><i class="ti ti-user"></i> 혼자</a>
+        <a href="<c:url value='/product/productListPlayer/2'/>"><i class="ti ti-users"></i> 2인</a>
+        <a href="<c:url value='/product/productListPlayer/3'/>">3~4인</a>
+        <a href="<c:url value='/product/productListPlayer/5'/>">5인 이상</a>
       </div>
     </article>
 
     <!-- 인기 게임 -->
     <div class="sectionTitle">
       <h3>이번 주 인기 게임</h3>
-      <a href="#">더보기 <i class="ti ti-chevron-right"></i></a>
     </div>
     <ul class="prdList">
-      <li class="prdItem">
-        <a href="#">
-          <div class="prdImg"></div>
-          <p class="prdName">보드게임 1</p>
-          <p class="prdPrice">0원</p>
-          <div class="prdTags"><span class="tag">0~0인</span><span class="tag">0분</span></div>
-        </a>
-      </li>
-      <li class="prdItem">
-        <a href="#">
-          <div class="prdImg"></div>
-          <p class="prdName">보드게임 2</p>
-          <p class="prdPrice">0원</p>
-          <div class="prdTags"><span class="tag">0~0인</span><span class="tag">0분</span></div>
-        </a>
-      </li>
-      <li class="prdItem">
-        <a href="#">
-          <div class="prdImg"></div>
-          <p class="prdName">보드게임 3</p>
-          <p class="prdPrice">0원</p>
-          <div class="prdTags"><span class="tag">0~0인</span><span class="tag">0분</span></div>
-        </a>
-      </li>
-      <li class="prdItem">
-        <a href="#">
-          <div class="prdImg"></div>
-          <p class="prdName">보드게임 4</p>
-          <p class="prdPrice">0원</p>
-          <div class="prdTags"><span class="tag">0~0인</span><span class="tag">0분</span></div>
-        </a>
-      </li>
+      <c:forEach var="prd" items="${bestList}">
+        <li class="prdItem">
+          <a href="<c:url value='/product/detailViewProduct/${prd.prdNo}'/>">
+            <div class="prdImg"><i class="ti ti-dice-5"></i></div>
+            <p class="prdName">${prd.prdName}</p>
+            <p class="prdPrice"><fmt:formatNumber value="${prd.prdPrice}" pattern="#,###"/>원</p>
+            <div class="prdTags">
+              <span class="tag">${prd.minPlayer}~${prd.maxPlayer}인</span>
+              <span class="tag">${prd.playTime}분</span>
+            </div>
+          </a>
+        </li>
+      </c:forEach>
     </ul>
 
     <!-- 카테고리 바로가기 -->
